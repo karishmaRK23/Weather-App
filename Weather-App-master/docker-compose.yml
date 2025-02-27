@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  web:
+    image: weather-html-app  # Use the previously built image
+    container_name: weather-app
+    ports:
+      - "8082:80"  # Expose port 8082 of the host to port 80 of the container
+    restart: always  # Restart the container if it crashes or is stopped
+    environment:
+      - VIRTUAL_HOST=weather-app.local  
+    volumes:
+      - ./app:/usr/share/nginx/html  # Mapping my app directory to the container's web directory
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
