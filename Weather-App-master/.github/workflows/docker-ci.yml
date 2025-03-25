@@ -17,14 +17,16 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Login to Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
-     - name: Build Docker Image
-       run: docker build -t pandeynitika/weather-app:latest -f Dockerfile .
+      - name: Build Docker Image
+        run: docker build -t pandeynitika/weather-app:latest -f Dockerfile .
 
       - name: Push to Docker Hub
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/weather-app:latest
+        run: docker push pandeynitika/weather-app:latest
 
       - name: Debug Files
         run: ls -R
+
+
 
