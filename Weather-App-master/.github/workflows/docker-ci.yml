@@ -22,6 +22,7 @@ jobs:
       - name: Build Docker Image
         run: docker build -t pandeynitika/weather-app:latest -f Weather-App-master/Dockerfile Weather-App-master/
 
+
       - name: Push to Docker Hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/weather-app:latest
 
